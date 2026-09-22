@@ -1,0 +1,727 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DevConnect - MERN Stack Concepts & Interview Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+  
+  @page {
+    size: A4;
+    margin: 14mm 12mm 14mm 12mm;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1e293b;
+    background: #ffffff;
+    line-height: 1.5;
+    font-size: 10.5pt;
+  }
+
+  /* Header */
+  .header-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+    color: white;
+    padding: 22px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #4338ca;
+  }
+  .header-card h1 {
+    font-size: 22pt;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+    color: #f8fafc;
+  }
+  .header-card .subtitle {
+    font-size: 11.5pt;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .badge {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #f8fafc;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 8pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Section Styles */
+  h2.section-title {
+    font-size: 13.5pt;
+    font-weight: 800;
+    color: #0f172a;
+    border-bottom: 2px solid #4f46e5;
+    padding-bottom: 4px;
+    margin-top: 22px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    page-break-after: avoid;
+  }
+
+  /* Concept Box */
+  .concept-card {
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    border-left: 4px solid #4f46e5;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    page-break-inside: avoid;
+  }
+  .concept-card.mongo { border-left-color: #10b981; }
+  .concept-card.express { border-left-color: #f59e0b; }
+  .concept-card.react { border-left-color: #06b6d4; }
+  .concept-card.node { border-left-color: #84cc16; }
+  .concept-card.security { border-left-color: #ef4444; }
+  .concept-card.socket { border-left-color: #8b5cf6; }
+
+  .concept-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+  .concept-name {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .concept-loc {
+    font-size: 7.5pt;
+    color: #475569;
+    font-family: 'Fira Code', monospace;
+    background: #e2e8f0;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  .concept-desc {
+    font-size: 9.5pt;
+    color: #334155;
+    margin-bottom: 4px;
+  }
+
+  .interview-point {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 9pt;
+    color: #1e40af;
+    margin-top: 5px;
+  }
+  .interview-point strong {
+    color: #1d4ed8;
+  }
+
+  /* Code Block */
+  pre {
+    background: #0f172a;
+    color: #f1f5f9;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-family: 'Fira Code', monospace;
+    font-size: 8pt;
+    overflow-x: auto;
+    margin: 4px 0;
+    line-height: 1.4;
+  }
+  code {
+    font-family: 'Fira Code', monospace;
+    font-size: 8.5pt;
+    background: #f1f5f9;
+    color: #0f172a;
+    padding: 1px 3px;
+    border-radius: 3px;
+  }
+  pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px 0;
+    font-size: 8.8pt;
+    page-break-inside: avoid;
+  }
+  th {
+    background: #0f172a;
+    color: #ffffff;
+    text-align: left;
+    padding: 6px 8px;
+    font-weight: 600;
+    border: 1px solid #0f172a;
+  }
+  td {
+    padding: 5px 8px;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    vertical-align: top;
+  }
+  tr:nth-child(even) {
+    background: #f8fafc;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-card">
+  <h1>DevConnect â€” MERN Stack Technical Guide</h1>
+  <div class="subtitle">Complete Concept Breakdown, Implementation Mapping & Interview Answers</div>
+  <div class="badge-row">
+    <span class="badge">MongoDB Atlas + Mongoose 8</span>
+    <span class="badge">Express.js 4 REST API</span>
+    <span class="badge">React 19 + Vite 8 SPA</span>
+    <span class="badge">Node.js 20 ESM</span>
+    <span class="badge">Socket.io 4 WebSockets</span>
+    <span class="badge">TanStack Query v5</span>
+    <span class="badge">JWT Dual-Token Rotation</span>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 1. ARCHITECTURE SUMMARY                    -->
+<!-- ========================================== -->
+<h2 class="section-title">ðŸ›ï¸ 1. High-Level Architectural Flow</h2>
+<div class="concept-card">
+  <p class="concept-desc">
+    DevConnect is built using a decoupled <strong>Client-Server MVC architecture</strong>. The React frontend interacts with the Express backend via RESTful JSON APIs and persistent WebSockets for live features.
+  </p>
+  <pre>
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                                CLIENT (React 19 + Vite)                                    â”‚
+â”‚  â€¢ UI Layer: TailwindCSS + Lucide Icons + React Router v6                                 â”‚
+â”‚  â€¢ State: AuthContext (useReducer) + SocketContext + TanStack React Query v5               â”‚
+â”‚  â€¢ Networking: Axios with Request/Response Interceptors (Automatic Silent Token Refresh)  â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                               â”‚ HTTP / HTTPS (REST API)               â”‚ WebSocket (WSS)
+                               â–¼                                        â–¼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                             SERVER (Express.js 4 + Node.js 20)                            â”‚
+â”‚  â€¢ Security Pipeline: Helmet, CORS, Express-Rate-Limit, Cookie-Parser                     â”‚
+â”‚  â€¢ Middleware: verifyJWT, validate (express-validator), uploadSingle/Array (Multer)       â”‚
+â”‚  â€¢ Controllers: Async handler wrapped controllers with ApiError handling                  â”‚
+â”‚  â€¢ Real-Time: Socket.io server with Handshake JWT authentication & Personal User Rooms     â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                               â”‚ Mongoose 8 ODM                         â”‚ Cloudinary SDK / SMTP
+                               â–¼                                        â–¼
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                 MongoDB Database                     â”‚  â”‚   Cloudinary & Ethereal SMTP    â”‚
+â”‚  â€¢ Collections: Users, Posts, Comments, Notificationsâ”‚  â”‚  â€¢ Avatars & Post Cover Images  â”‚
+â”‚  â€¢ Features: Indexes, TTL Auto-expiry, Pre/Post Hooksâ”‚  â”‚  â€¢ Password Reset Email Links   â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+  </pre>
+</div>
+
+<!-- ========================================== -->
+<!-- 2. MONGODB & MONGOOSE CONCEPTS             -->
+<!-- ========================================== -->
+<h2 class="section-title">ðŸƒ 2. MongoDB & Mongoose Concepts (M in MERN)</h2>
+
+<div class="concept-card mongo">
+  <div class="concept-header">
+    <span class="concept-name">1. Mongoose Schema, Model & Field Modifiers</span>
+    <span class="concept-loc">models/User.model.js, Post.model.js, Comment.model.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Enforces strong data typing, constraints (minlength, maxlength, regex matching), and sanitization (lowercase, trim) on flexible MongoDB collections.
+  </p>
+  <p class="concept-desc">
+    <strong>Key Feature Used:</strong> <code>select: false</code> on sensitive fields (<code>password</code>, <code>refreshToken</code>, <code>resetPasswordToken</code>). By default, these fields are never returned in MongoDB query results unless explicitly requested using <code>.select('+password')</code>.
+  </p>
+  <div class="interview-point">
+    <strong>ðŸŽ¯ Interview Answer:</strong> <em>"We use Mongoose schemas to ensure schema validation at the database layer. By using <code>select: false</code> on passwords and tokens, we eliminate accidental credential leaks in API responses."</em>
+  </div>
+</div>
+
+<div class="concept-card mongo">
+  <div class="concept-header">
+    <span class="concept-name">2. Mongoose Lifecycle Hooks (Pre & Post Middleware)</span>
+    <span class="concept-loc">models/User.model.js, Post.model.js, Comment.model.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Executes automated business logic before or after document operations (save, delete) to maintain data consistency without bloating controllers.
+  </p>
+  <ul>
+    <li><strong>Pre-save (User):</strong> Automatically hashes user passwords with <code>bcryptjs</code> only when the password field is created or modified (<code>this.isModified('password')</code>).</li>
+    <li><strong>Pre-save (Post):</strong> Calculates estimated reading time dynamically based on word count (<code>words / 200 wpm</code>).</li>
+    <li><strong>Post-save (Comment):</strong> Automatically executes <code>Post.findByIdAndUpdate(doc.post, { $inc: { commentsCount: 1 } })</code>.</li>
+    <li><strong>Post-deleteOne (Comment):</strong> Automatically decrements <code>commentsCount</code> when a comment is removed.</li>
+  </ul>
+  <div class="interview-point">
+    <strong>ðŸŽ¯ Interview Answer:</strong> <em>"We use Mongoose pre/post middleware for separation of concerns. Instead of manually updating comment counters or hashing passwords in multiple controllers, the database models manage their own lifecycle logic."</em>
+  </div>
+</div>
+
+<div class="concept-card mongo">
+  <div class="concept-header">
+    <span class="concept-name">3. Mongoose Virtuals & Schema Transformations</span>
+    <span class="concept-loc">models/User.model.js, Post.model.js, Comment.model.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Computed properties that are dynamically calculated from document properties and included in JSON responses without storing duplicate data in MongoDB.
+  </p>
+  <pre>
+userSchema.virtual('followerCount').get(function () { return this.followers ? this.followers.length : 0; });
+userSchema.virtual('followingCount').get(function () { return this.following ? this.following.length : 0; });
+// Configured with: { toJSON: { virtuals: true }, toObject: { virtuals: true } }
+  </pre>
+  <div class="interview-point">
+    <strong>ðŸŽ¯ Interview Answer:</strong> <em>"Virtuals prevent database redundancy. Rather than storing and synchronizing a separate <code>followerCount</code> integer field, we compute it on the fly from the <code>followers</code> array."</em>
+  </div>
+</div>
+
+<div class="concept-card mongo">
+  <div class="concept-header">
+    <span class="concept-name">4. Schema Methods (Document Instance Methods)</span>
+    <span class="concept-loc">models/User.model.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Custom helper methods bound directly to Mongoose document instances.
+  </p>
+  <ul>
+    <li><code>userSchema.methods.comparePassword(plainText)</code>: Encapsulates bcrypt verification against <code>this.password</code>.</li>
+    <li><code>userSchema.methods.toPublicProfile()</code>: Strips sensitive fields (tokens, internal IDs) and returns clean profile JSON.</li>
+  </ul>
+</div>
+
+<div class="concept-card mongo">
+  <div class="concept-header">
+    <span class="concept-name">5. Relationship Referencing & Mongoose .populate()</span>
+    <span class="concept-loc">controllers/post.controller.js, comment.controller.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> MongoDB is non-relational, but we store <code>mongoose.Schema.Types.ObjectId</code> references with <code>ref: 'User'</code> or <code>ref: 'Post'</code>. <code>.populate()</code> acts like a SQL JOIN, replacing the ID with the referenced document.
+  </p>
+  <pre>
+const posts = await Post.find(query)
+  .sort({ createdAt: -1 })
+  .skip(skip).limit(limit)
+  .populate('author', 'username name avatar') // Only selects needed user fields
+  .lean(); // Converts to plain JS object for performance
+  </pre>
+  <div class="interview-point">
+    <strong>ðŸŽ¯ Interview Answer:</strong> <em>"We use selective field population (<code>'username name avatar'</code>) combined with <code>.lean()</code> to avoid fetching unnecessary data and eliminate Mongoose hydration overhead for read-heavy routes."</em>
+  </div>
+</div>
+
+<div class="concept-card mongo">
+  <div class="concept-header">
+    <span class="concept-name">6. Database Indexing, Compound Indexes & TTL Auto-Expiry</span>
+    <span class="concept-loc">models/Post.model.js, User.model.js, Notification.model.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> High-speed query execution and automated document cleanup.
+  </p>
+  <ul>
+    <li><strong>Full-Text Search Index:</strong> <code>postSchema.index({ title: 'text', content: 'text', tags: 'text' })</code> and <code>userSchema.index({ name: 'text', username: 'text', skills: 'text' })</code> for weighted search queries with <code>score: { $meta: 'textScore' }</code>.</li>
+    <li><strong>Compound Index:</strong> <code>notificationSchema.index({ recipient: 1, isRead: 1, createdAt: -1 })</code> speeds up unread notification queries.</li>
+    <li><strong>TTL (Time-To-Live) Index:</strong> <code>notificationSchema.index({ createdAt: 1 }, { expireAfterSeconds: 30 * 24 * 60 * 60 })</code>. MongoDB automatically removes notifications older than 30 days without any cron jobs.</li>
+  </ul>
+  <div class="interview-point">
+    <strong>ðŸŽ¯ Interview Answer:</strong> <em>"We implemented a MongoDB TTL index on the notifications collection so old alerts are automatically purged by the database background engine after 30 days."</em>
+  </div>
+</div>
+
+<div class="concept-card mongo">
+  <div class="concept-header">
+    <span class="concept-name">7. Atomic Update Operators ($addToSet, $pull, $inc, $in)</span>
+    <span class="concept-loc">controllers/post.controller.js, user.controller.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Executes atomic operations in MongoDB without race conditions or read-modify-write cycles.
+  </p>
+  <ul>
+    <li><code>$addToSet</code>: Adds user ID to <code>likes</code>, <code>bookmarks</code>, or <code>following</code> array only if not already present.</li>
+    <li><code>$pull</code>: Removes user ID from array upon unliking or unfollowing.</li>
+    <li><code>$inc</code>: Atomically increments view counts (<code>{ $inc: { views: 1 } }</code>) and comment counts.</li>
+    <li><code>$in</code>: Fetches personalized home feed by matching post authors against followed users (<code>{ author: { $in: followingIds } }</code>).</li>
+  </ul>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ========================================== -->
+<!-- 3. EXPRESS.JS & MIDDLEWARE ARCHITECTURE    -->
+<!-- ========================================== -->
+<h2 class="section-title">âš¡ 3. Express.js & Middleware Architecture (E in MERN)</h2>
+
+<div class="concept-card express">
+  <div class="concept-header">
+    <span class="concept-name">1. Layered RESTful Routing & Express Router</span>
+    <span class="concept-loc">server.js, routes/*.routes.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Modularizes endpoints into domain-specific routers: <code>/api/v1/auth</code>, <code>/api/v1/users</code>, <code>/api/v1/posts</code>, <code>/api/v1/comments</code>, and <code>/api/v1/notifications</code>.
+  </p>
+</div>
+
+<div class="concept-card express">
+  <div class="concept-header">
+    <span class="concept-name">2. Custom Authentication Middleware (verifyJWT) & Ownership Verification</span>
+    <span class="concept-loc">middleware/auth.middleware.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Protects private endpoints by decoding Bearer JWT tokens from the <code>Authorization</code> header and attaching the user object to <code>req.user</code>.
+  </p>
+  <pre>
+export const verifyJWT = asyncHandler(async (req, _res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader?.startsWith('Bearer ')) throw ApiError.unauthorized('Token missing');
+  const token = authHeader.split(' ')[1];
+  const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+  const user = await User.findById(decoded.id).select('-password -refreshToken');
+  if (!user) throw ApiError.unauthorized('User not found');
+  req.user = user;
+  next();
+});
+
+// Middleware Factory: High-order function to verify resource ownership
+export const checkOwnership = (getOwnerId) => asyncHandler(async (req, _res, next) => {
+  if (getOwnerId(req) !== req.user._id.toString()) throw ApiError.forbidden('Unauthorized action');
+  next();
+});
+  </pre>
+</div>
+
+<div class="concept-card express">
+  <div class="concept-header">
+    <span class="concept-name">3. Global Centralized Error Handling Middleware</span>
+    <span class="concept-loc">middleware/error.middleware.js, utils/ApiError.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Captures all synchronous and asynchronous errors in a single 4-argument Express error handler <code>(err, req, res, next)</code>. Translates Mongoose <code>CastError</code> (400), <code>ValidationError</code> (422), Mongo duplicate key error <code>code 11000</code> (409), and JWT errors (401) into clean, standardized JSON errors.
+  </p>
+  <div class="interview-point">
+    <strong>ðŸŽ¯ Interview Answer:</strong> <em>"We use a custom <code>ApiError</code> class and a global error middleware registered last in Express. This eliminates repetitive error formatting across controllers and hides internal stack traces in production."</em>
+  </div>
+</div>
+
+<div class="concept-card express">
+  <div class="concept-header">
+    <span class="concept-name">4. Controller Async Wrapper (asyncHandler)</span>
+    <span class="concept-loc">utils/asyncHandler.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> A higher-order function that wraps asynchronous Express handlers in <code>Promise.resolve().catch(next)</code>, eliminating repetitive <code>try/catch</code> blocks in every controller.
+  </p>
+</div>
+
+<div class="concept-card express">
+  <div class="concept-header">
+    <span class="concept-name">5. Declarative Input Validation with express-validator</span>
+    <span class="concept-loc">routes/auth.routes.js, middleware/validate.middleware.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Validates and sanitizes incoming HTTP request body/params before the controller runs. If validation fails, <code>validate.middleware.js</code> intercepts the result and responds immediately with status 400 and structured error arrays.
+  </p>
+</div>
+
+<!-- ========================================== -->
+<!-- 4. REACT 19 & FRONTEND ARCHITECTURE        -->
+<!-- ========================================== -->
+<h2 class="section-title">âš›ï¸ 4. React 19 & Frontend State Architecture (R in MERN)</h2>
+
+<div class="concept-card react">
+  <div class="concept-header">
+    <span class="concept-name">1. Global Auth State with Context API & useReducer</span>
+    <span class="concept-loc">frontend/src/context/AuthContext.jsx</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Manages authentication state (<code>user</code>, <code>isAuthenticated</code>, <code>isLoading</code>) across the component tree without prop drilling. Employs a pure Redux-style reducer with action types: <code>LOGIN</code>, <code>LOGOUT</code>, <code>UPDATE_USER</code>, and <code>SET_LOADING</code>.
+  </p>
+  <p class="concept-desc">
+    <strong>Silent Session Restoration:</strong> On initial app load (<code>useEffect</code>), <code>AuthContext</code> automatically calls <code>/auth/refresh</code> to restore user sessions from the httpOnly refresh cookie.
+  </p>
+  <div class="interview-point">
+    <strong>ðŸŽ¯ Interview Answer:</strong> <em>"We pair Context API with <code>useReducer</code> instead of multiple <code>useState</code> hooks to ensure predictable, atomic auth state transitions across the application."</em>
+  </div>
+</div>
+
+<div class="concept-card react">
+  <div class="concept-header">
+    <span class="concept-name">2. Server State & Cache Management with TanStack React Query v5</span>
+    <span class="concept-loc">frontend/src/hooks/usePosts.js, useUsers.js, useComments.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Separates server data caching from local UI state. Handles caching, background refetching, query invalidation, deduplication, and loading states automatically.
+  </p>
+  <ul>
+    <li><code>useQuery</code>: Fetches and caches data with structured query key factories (e.g. <code>postKeys.list(filters)</code>).</li>
+    <li><code>useMutation</code>: Handles POST/PUT/DELETE actions and automatically invalidates stale queries via <code>queryClient.invalidateQueries()</code> on success to instantly refresh UI lists.</li>
+    <li><code>useInfiniteQuery</code>: Drives smooth infinite-scroll pagination on the home feed.</li>
+  </ul>
+  <div class="interview-point">
+    <strong>ðŸŽ¯ Interview Answer:</strong> <em>"React Query drastically reduced our frontend boilerplate. We don't write manual loading flags or <code>useEffect</code> fetch loops for API data â€” React Query manages the cache lifecycle."</em>
+  </div>
+</div>
+
+<div class="concept-card react">
+  <div class="concept-header">
+    <span class="concept-name">3. Protected Routes & Declarative Routing (React Router v6)</span>
+    <span class="concept-loc">frontend/src/App.jsx, routes/ProtectedRoute.jsx</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> <code>ProtectedRoute</code> guards private pages (Create Post, Notifications, Bookmarks). If unauthenticated, it redirects to <code>/login</code> while preserving the intended destination URL via router state.
+  </p>
+</div>
+
+<div class="concept-card react">
+  <div class="concept-header">
+    <span class="concept-name">4. High-Performance Form Handling with react-hook-form & Zod</span>
+    <span class="concept-loc">frontend/src/pages/Register.jsx, Login.jsx, Profile.jsx</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Employs uncontrolled inputs via <code>register()</code> to eliminate re-renders on every keystroke, validated by strict, type-safe <code>Zod</code> schemas connected via <code>@hookform/resolvers/zod</code>.
+  </p>
+</div>
+
+<!-- ========================================== -->
+<!-- 5. NODE.JS CORE & ASYNC PATTERNS           -->
+<!-- ========================================== -->
+<h2 class="section-title">ðŸŸ¢ 5. Node.js & Asynchronous Programming (N in MERN)</h2>
+
+<div class="concept-card node">
+  <div class="concept-header">
+    <span class="concept-name">1. Native ECMAScript Modules (ESM)</span>
+    <span class="concept-loc">backend/package.json ("type": "module"), server.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Standard modern module syntax (<code>import / export</code>) across both backend and frontend, enabling top-level imports and clean tree-shaking.
+  </p>
+</div>
+
+<div class="concept-card node">
+  <div class="concept-header">
+    <span class="concept-name">2. Parallel Execution with Promise.all()</span>
+    <span class="concept-loc">controllers/post.controller.js, user.controller.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Runs independent asynchronous database queries concurrently on Node's event loop to halve response latency.
+  </p>
+  <pre>
+// Executes post query and total count in parallel
+const [posts, total] = await Promise.all([
+  Post.find(query).sort(sortObj).skip(skip).limit(limit).lean(),
+  Post.countDocuments(query)
+]);
+  </pre>
+</div>
+
+<div class="concept-card node">
+  <div class="concept-header">
+    <span class="concept-name">3. Cryptographic Token Generation (Node.js Crypto Module)</span>
+    <span class="concept-loc">controllers/auth.controller.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Generates secure 20-byte random hex tokens for password resets (<code>crypto.randomBytes(20).toString('hex')</code>) and hashes them with SHA-256 before saving to the database.
+  </p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ========================================== -->
+<!-- 6. SECURITY & JWT AUTHENTICATION           -->
+<!-- ========================================== -->
+<h2 class="section-title">ðŸ” 6. Security, Authentication & Session Architecture</h2>
+
+<div class="concept-card security">
+  <div class="concept-header">
+    <span class="concept-name">1. Dual-Token Architecture & Refresh Token Rotation</span>
+    <span class="concept-loc">utils/generateToken.js, controllers/auth.controller.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Protects against both XSS and CSRF token theft.
+  </p>
+  <ul>
+    <li><strong>Access Token (15 min):</strong> Short-lived JWT containing user payload, stored strictly in React memory (module variable in <code>axios.js</code>). Sent via <code>Authorization: Bearer</code> header.</li>
+    <li><strong>Refresh Token (7 days):</strong> Long-lived JWT stored in an <code>httpOnly</code>, <code>sameSite: 'strict'</code>, <code>secure</code> cookie and hashed/saved in MongoDB.</li>
+    <li><strong>Token Rotation:</strong> Every call to <code>/auth/refresh</code> replaces the stored refresh token with a new one. If an old token is presented again, the server identifies token reuse and revokes access.</li>
+  </ul>
+</div>
+
+<div class="concept-card security">
+  <div class="concept-header">
+    <span class="concept-name">2. Axios Interceptor Queue for Automatic Token Refresh</span>
+    <span class="concept-loc">frontend/src/api/axios.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> When an API request fails with a <code>401 Unauthorized</code> (access token expired), the Axios response interceptor intercepts the error, calls <code>/auth/refresh</code>, updates the access token, and transparently retries the original request.
+  </p>
+  <p class="concept-desc">
+    <strong>Request Queuing:</strong> If multiple API calls fail simultaneously with 401s, they are pushed into a <code>failedQueue</code> and resolved once the single in-flight refresh request completes.
+  </p>
+  <div class="interview-point">
+    <strong>ðŸŽ¯ Interview Answer:</strong> <em>"Our Axios interceptor implements a request queue pattern. It silently refreshes the JWT access token without logging the user out or triggering multiple redundant refresh requests."</em>
+  </div>
+</div>
+
+<div class="concept-card security">
+  <div class="concept-header">
+    <span class="concept-name">3. HTTP Security Headers (Helmet) & CORS Configuration</span>
+    <span class="concept-loc">server.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> <code>helmet()</code> sets 14 protective HTTP headers (Content-Security-Policy, X-Frame-Options against clickjacking, X-Content-Type-Options). <code>cors()</code> restricts API access exclusively to <code>process.env.CLIENT_ORIGIN</code> with <code>credentials: true</code> for secure cookie transport.
+  </p>
+</div>
+
+<!-- ========================================== -->
+<!-- 7. REAL-TIME WEBSOCKETS (SOCKET.IO)        -->
+<!-- ========================================== -->
+<h2 class="section-title">ðŸ”Œ 7. Real-Time Communication (Socket.io)</h2>
+
+<div class="concept-card socket">
+  <div class="concept-header">
+    <span class="concept-name">1. WebSocket Handshake JWT Authentication</span>
+    <span class="concept-loc">socket/socket.js, frontend/src/context/SocketContext.jsx</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Socket.io connection attempts pass through an authentication middleware:
+  </p>
+  <pre>
+io.use(async (socket, next) => {
+  const token = socket.handshake.auth?.token;
+  if (!token) return next(new Error('Auth token missing'));
+  const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+  socket.user = await User.findById(decoded.id).select('_id username name avatar').lean();
+  next();
+});
+  </pre>
+</div>
+
+<div class="concept-card socket">
+  <div class="concept-header">
+    <span class="concept-name">2. Private User Rooms & Targeted Notifications</span>
+    <span class="concept-loc">socket/socket.js, controllers/post.controller.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Upon connection, each user joins a private Socket.io room named after their unique user ID (<code>socket.join(userId)</code>). When a user receives a like, comment, or follow, the controller accesses the socket instance via <code>req.app.get('io')</code> and emits the notification directly to that user's private room: <code>io.to(recipientId).emit('notification:new', payload)</code>.
+  </p>
+</div>
+
+<div class="concept-card socket">
+  <div class="concept-header">
+    <span class="concept-name">3. Live Online Presence Tracking</span>
+    <span class="concept-loc">socket/socket.js, frontend/src/context/SocketContext.jsx</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Broadcasts <code>user:online</code> and <code>user:offline</code> events across all connected clients on connection/disconnection and updates <code>isOnline</code> & <code>lastSeen</code> in MongoDB.
+  </p>
+</div>
+
+<!-- ========================================== -->
+<!-- 8. FILE UPLOADS & CLOUD STORAGE            -->
+<!-- ========================================== -->
+<h2 class="section-title">ðŸ“ 8. File Uploads & Cloud Media (Multer + Cloudinary)</h2>
+
+<div class="concept-card">
+  <div class="concept-header">
+    <span class="concept-name">1. In-Memory File Buffering with Multer</span>
+    <span class="concept-loc">middleware/upload.middleware.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Uses <code>multer.memoryStorage()</code> to retain uploaded files in RAM as a Buffer with strict MIME-type validation (JPEG, PNG, WebP) and a 5MB size limit, avoiding temporary disk writes.
+  </p>
+</div>
+
+<div class="concept-card">
+  <div class="concept-header">
+    <span class="concept-name">2. Direct Cloudinary Buffer Streaming & Transformations</span>
+    <span class="concept-loc">controllers/user.controller.js, post.controller.js</span>
+  </div>
+  <p class="concept-desc">
+    <strong>What & Why:</strong> Uses <code>streamifier</code> to pipe the memory buffer directly into <code>cloudinary.uploader.upload_stream()</code>, applying automated on-the-fly transformations (e.g. <code>crop: 'fill', gravity: 'face', width: 400, height: 400</code> for profile avatars).
+  </p>
+</div>
+
+<!-- ========================================== -->
+<!-- 9. INTERVIEW CHEAT SHEET TABLE             -->
+<!-- ========================================== -->
+<h2 class="section-title">ðŸ“Š 9. Quick Interview Reference Cheat Sheet</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 22%;">Concept</th>
+      <th style="width: 38%;">Why It Was Used in DevConnect</th>
+      <th style="width: 40%;">How to Explain in an Interview</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>JWT Dual-Token Pattern</strong></td>
+      <td>Secure auth without storing long-lived credentials in JS-accessible storage.</td>
+      <td><em>"We store access tokens in memory for speed and refresh tokens in httpOnly cookies with rotation to defend against XSS and CSRF."</em></td>
+    </tr>
+    <tr>
+      <td><strong>Axios Interceptor Queue</strong></td>
+      <td>Handles 401 token expiry seamlessly in the background.</td>
+      <td><em>"If an access token expires mid-session, Axios queues outgoing requests, fetches a new token via refresh cookie, and replays requests without user interruption."</em></td>
+    </tr>
+    <tr>
+      <td><strong>TanStack Query v5</strong></td>
+      <td>Caches server responses and handles optimistic UI and cache invalidation.</td>
+      <td><em>"Eliminates boilerplate <code>useEffect</code> data fetching. We use structured query keys and invalidate stale queries on mutations."</em></td>
+    </tr>
+    <tr>
+      <td><strong>Mongoose Hooks & Virtuals</strong></td>
+      <td>Separation of business logic (password hashing, comment counting, read time).</td>
+      <td><em>"Pre-save hooks hash modified passwords, post-save hooks keep relational counters in sync, and virtuals prevent storing redundant derived values."</em></td>
+    </tr>
+    <tr>
+      <td><strong>MongoDB TTL Indexes</strong></td>
+      <td>Automated notification purge after 30 days.</td>
+      <td><em>"MongoDB's background TTL thread auto-purges documents past the expiry timestamp, eliminating the need for scheduled cron jobs."</em></td>
+    </tr>
+    <tr>
+      <td><strong>Socket.io Private Rooms</strong></td>
+      <td>Instant, targeted alerts for likes, comments, and follows.</td>
+      <td><em>"Each authenticated socket joins a room keyed by user ID. Controllers emit real-time events directly to the recipient's room."</em></td>
+    </tr>
+    <tr>
+      <td><strong>Multer + Cloudinary Stream</strong></td>
+      <td>Profile avatar and post banner image uploads.</td>
+      <td><em>"We use Multer memory storage and stream the buffer directly to Cloudinary with facial-detection cropping, avoiding local disk writes."</em></td>
+    </tr>
+    <tr>
+      <td><strong>Global Error Handling</strong></td>
+      <td>Unified error responses and status code mapping.</td>
+      <td><em>"All controllers use <code>asyncHandler</code> and throw custom <code>ApiError</code> instances. The central error middleware standardizes responses."</em></td>
+    </tr>
+    <tr>
+      <td><strong>Docker Compose Deployment</strong></td>
+      <td>Orchestrates MongoDB 7, Express API, and Nginx-served React frontend.</td>
+      <td><em>"Multi-stage Docker builds provide lightweight production images, and Docker Compose configures service health checks and network bridging."</em></td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
