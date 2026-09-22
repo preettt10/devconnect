@@ -1,177 +1,230 @@
-# DevConnect
+# 🌐 DevConnect
 
-> A production-grade developer community platform — LinkedIn + dev.to built with the MERN stack.
+<p align="center">
+  <strong>A production-grade developer community platform combining the networking power of LinkedIn with the content richness of dev.to — built with the MERN stack.</strong>
+</p>
 
-![DevConnect](https://img.shields.io/badge/stack-MERN-brightgreen)
-![Node](https://img.shields.io/badge/node-20+-blue)
-![React](https://img.shields.io/badge/react-18-61DAFB)
-![License](https://img.shields.io/badge/license-MIT-yellow)
+<p align="center">
+  <img src="https://img.shields.io/badge/Stack-MERN-00D8FF?style=for-the-badge&logo=react&logoColor=white" alt="MERN Stack" />
+  <img src="https://img.shields.io/badge/Node.js-v20+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Express-Backend-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Socket.io-Realtime-010101?style=for-the-badge&logo=socketdotio&logoColor=white" alt="Socket.io" />
+  <img src="https://img.shields.io/badge/TailwindCSS-v4-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Docker-Enabled-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License: MIT" />
+</p>
 
-## Features
+---
 
-- 🔐 **JWT Auth** — Access token (15m) + Refresh token (7d) rotation with httpOnly cookies
-- 👤 **Developer Profiles** — Bio, skills, GitHub, portfolio, avatar via Cloudinary
-- 📝 **Rich Posts** — Markdown editor with live preview, cover image, tags, read time
-- ❤️ **Interactions** — Like, comment (threaded), bookmark, follow/unfollow
-- 🔍 **Full-text Search** — MongoDB text indexes on posts and users
-- 🔔 **Real-time Notifications** — Socket.io targeted room-based delivery
-- 🟢 **Online Presence** — Live online/offline status tracking
-- 🐳 **Docker** — Multi-stage builds, docker-compose, nginx
-- 🚀 **CI/CD** — GitHub Actions pipeline
+## 📌 Repository Overview
 
-## Tech Stack
+**DevConnect** is a modern, full-stack social networking and technical publishing platform engineered for software engineers, designers, and tech professionals. It features enterprise-grade authentication with rotating JWT tokens, real-time WebSocket notifications and presence tracking, rich markdown authoring with Cloudinary media management, and complete containerization via Docker.
 
-| Layer | Technology |
-|-------|-----------|
-| Runtime | Node.js v20+ |
-| Backend | Express.js |
-| Database | MongoDB + Mongoose |
-| Auth | JWT (access + refresh) |
-| Real-time | Socket.io |
-| Frontend | React 18 + Vite |
-| Styling | Tailwind CSS v4 |
-| State | Context API + useReducer |
-| Server state | TanStack React Query v5 |
-| Forms | React Hook Form + Zod |
-| HTTP client | Axios with interceptors |
+---
 
-## Project Structure
+## ✨ Key Features
 
-```
+### 🔐 Authentication & Security
+- **Dual-Token System**: Short-lived Access Tokens (15m) + secure Refresh Tokens (7d) stored in `httpOnly`, `SameSite` cookies.
+- **Automatic Token Rotation**: Axios interceptors seamlessly handle token renewal on `401 Unauthorized`.
+- **Protected Routes & Role Guards**: Robust client and server-side authorization middleware.
+- **Data Validation & Sanitization**: Zod validation schemas on forms and Express validation middleware.
+
+### 📝 Content & Developer Feed
+- **Rich Markdown Engine**: Interactive Markdown authoring with live preview, syntax highlighting, custom cover images, tags, and automatic reading-time calculation.
+- **Smart Feed Algorithm**: Chronological community feed and personalized following-based feeds.
+- **Full-Text Search**: Optimized MongoDB text indexing across post titles, tags, content, and user bios.
+- **Engagements**: Threaded comments, optimistic liking, and personal bookmarking.
+
+### ⚡ Real-Time Engine (Socket.io)
+- **Instant Notifications**: Targeted room delivery for likes, comments, and new followers.
+- **Live Online Presence**: Dynamic online/offline indicator for active developers.
+- **Unread Badges**: Real-time counter updates without page refreshes.
+
+### 👤 Developer Profiles
+- **Portfolio Showcases**: Bio, tech skills, GitHub link, personal website, and social links.
+- **Cloudinary Asset Storage**: Direct-to-cloud profile avatar and cover image uploads with automatic resizing and optimization.
+- **Follow Network**: Follow/unfollow system with follower and following counters.
+
+### 🐳 DevOps & Architecture
+- **Dockerized Environment**: Multi-stage build Dockerfiles for backend and frontend with `docker-compose`.
+- **Production Reverse Proxy**: Production-ready NGINX configuration for serving the SPA frontend.
+- **CI/CD Automation**: GitHub Actions workflow running automated linting, test suites, and build verifications.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+### **Frontend**
+- **Core**: React 18, Vite
+- **Styling**: Tailwind CSS, PostCSS
+- **State & Caching**: TanStack React Query v5 (server-state cache, optimistic updates), React Context API (Auth & Socket states)
+- **Form Handling**: React Hook Form, Zod
+- **Routing & Networking**: React Router DOM v6, Axios with request/response interceptors
+
+### **Backend**
+- **Runtime**: Node.js (v20+)
+- **Framework**: Express.js
+- **Database**: MongoDB with Mongoose ODM
+- **Real-Time**: Socket.io
+- **Media**: Cloudinary SDK, Multer
+- **Security**: JSON Web Tokens (`jsonwebtoken`), `bcryptjs`, `cookie-parser`, `cors`, `helmet`
+
+---
+
+## 📂 Project Structure
+
+```text
 devconnect/
-├── backend/          # Express API
-│   ├── config/       # DB + Cloudinary
-│   ├── controllers/  # Business logic
-│   ├── middleware/   # Auth, error, validate, upload
-│   ├── models/       # Mongoose schemas
-│   ├── routes/       # Express routers
-│   ├── socket/       # Socket.io setup
-│   └── utils/        # Helpers
-├── frontend/         # React + Vite app
-│   └── src/
-│       ├── api/      # Axios instance
-│       ├── components/
-│       ├── context/  # Auth + Socket contexts
-│       ├── hooks/    # React Query hooks
-│       └── pages/    # All 8 pages
-├── .github/workflows/ci.yml
-└── docker-compose.yml
+├── .github/
+│   └── workflows/
+│       └── ci.yml               # GitHub Actions CI pipeline
+├── backend/
+│   ├── config/                  # MongoDB & Cloudinary configuration
+│   ├── controllers/             # Request handlers & business logic
+│   ├── middleware/              # Auth, validation, upload, error middleware
+│   ├── models/                  # Mongoose models (User, Post, Comment, Notification)
+│   ├── routes/                  # Express REST route definitions
+│   ├── socket/                  # Socket.io connection & event handlers
+│   ├── utils/                   # ApiError, ApiResponse, asyncHandler, token helpers
+│   ├── Dockerfile               # Production multi-stage Docker build
+│   └── server.js                # Server entry point & HTTP/WS initialization
+├── frontend/
+│   ├── public/                  # Static assets & SVG icons
+│   ├── src/
+│   │   ├── api/                 # Axios client with interceptors
+│   │   ├── components/          # Reusable UI components & layouts
+│   │   ├── context/             # AuthContext & SocketContext
+│   │   ├── hooks/               # Custom React Query & WebSocket hooks
+│   │   ├── pages/               # Route views (Home, Profile, PostDetail, etc.)
+│   │   └── App.jsx              # Application router
+│   ├── Dockerfile               # Multi-stage build with Nginx
+│   ├── nginx.conf               # Production Nginx reverse proxy
+│   └── vite.config.js           # Vite development server & proxy config
+├── docker-compose.yml           # Multi-container orchestration
+└── README.md
 ```
 
-## Getting Started
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
+- [Node.js](https://nodejs.org/) v20 or higher
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account or local MongoDB instance
+- [Cloudinary](https://cloudinary.com/) free tier account for media uploads
 
-- Node.js v20+
-- MongoDB Atlas account → [mongodb.com/atlas](https://mongodb.com/atlas)
-- Cloudinary account → [cloudinary.com](https://cloudinary.com)
-
-### 1. Clone & Install
-
+### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourname/devconnect.git
+git clone https://github.com/<YOUR_USERNAME>/devconnect.git
 cd devconnect
-
-# Install backend
-cd backend && npm install
-
-# Install frontend
-cd ../frontend && npm install
 ```
 
-### 2. Configure Environment
+### 2. Configure Environment Variables
 
-**Backend** (`backend/.env`):
+#### Backend (`backend/.env`):
 ```bash
 cp backend/.env.example backend/.env
 ```
-
-| Variable | Description |
-|----------|-------------|
-| `PORT` | Server port (default: 5000) |
-| `MONGO_URI` | MongoDB Atlas connection string |
-| `JWT_ACCESS_SECRET` | 64-char random string |
-| `JWT_REFRESH_SECRET` | 64-char random string |
-| `CLOUDINARY_CLOUD_NAME` | From Cloudinary dashboard |
-| `CLOUDINARY_API_KEY` | From Cloudinary dashboard |
-| `CLOUDINARY_API_SECRET` | From Cloudinary dashboard |
-| `CLIENT_ORIGIN` | `http://localhost:5173` for local dev |
-
-Generate JWT secrets:
-```bash
-node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+Fill in the following fields:
+```env
+PORT=5000
+NODE_ENV=development
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/devconnect?retryWrites=true&w=majority
+JWT_ACCESS_SECRET=your_jwt_access_secret_min_64_chars
+JWT_REFRESH_SECRET=your_jwt_refresh_secret_min_64_chars
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+CLIENT_ORIGIN=http://localhost:5173
 ```
 
-**Frontend** (`frontend/.env`):
+> **Tip**: Generate 64-byte random secrets for JWT:
+> ```bash
+> node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+> ```
+
+#### Frontend (`frontend/.env`):
 ```bash
 cp frontend/.env.example frontend/.env
-# No changes needed for local dev — Vite proxy handles /api routing
 ```
+*(Default settings route via Vite proxy during development; no changes required for local dev).*
 
-### 3. Run Locally
+---
+
+### 3. Install Dependencies & Run
+
+#### Run with Local Node.js:
 
 ```bash
-# Terminal 1 — Backend
-cd backend && npm run dev
+# Terminal 1: Backend
+cd backend
+npm install
+npm run dev
 
-# Terminal 2 — Frontend
-cd frontend && npm run dev
+# Terminal 2: Frontend
+cd frontend
+npm install
+npm run dev
 ```
 
-Open → [http://localhost:5173](http://localhost:5173)
+Visit **`http://localhost:5173`** in your browser.
 
-### 4. Run with Docker
+#### Run with Docker Compose:
 
+Ensure your `backend/.env` is configured, then run:
 ```bash
-# Fill in backend/.env first, then:
 docker-compose up --build
 ```
+Access the application at **`http://localhost`**.
 
-Open → [http://localhost](http://localhost)
+---
 
-## API Reference
+## 📡 REST API Reference
 
-All endpoints are under `/api/v1/`.
+All backend API endpoints are namespaced under `/api/v1`.
 
-| Method | Route | Auth | Description |
-|--------|-------|------|-------------|
-| POST | `/auth/register` | No | Create account |
-| POST | `/auth/login` | No | Login → tokens |
-| POST | `/auth/refresh` | Cookie | Rotate refresh token |
-| POST | `/auth/logout` | Yes | Invalidate tokens |
-| GET | `/auth/me` | Yes | Current user |
-| GET | `/users/:username` | No | Public profile |
-| PUT | `/users/profile` | Yes | Update profile |
-| POST | `/users/avatar` | Yes | Upload avatar |
-| POST | `/users/:id/follow` | Yes | Follow/unfollow |
-| GET | `/posts` | No | All posts (paginated) |
-| POST | `/posts` | Yes | Create post |
-| GET | `/posts/feed` | Yes | Personalized feed |
-| GET | `/posts/search` | No | Full-text search |
-| POST | `/posts/:id/like` | Yes | Like/unlike |
-| POST | `/posts/:id/bookmark` | Yes | Bookmark toggle |
-| GET | `/comments/post/:id` | No | Post comments |
-| POST | `/comments/post/:id` | Yes | Add comment |
-| POST | `/comments/:id/reply` | Yes | Reply to comment |
-| GET | `/notifications` | Yes | My notifications |
-| PUT | `/notifications/read-all` | Yes | Mark all read |
+| Module | Method | Endpoint | Description | Auth Required |
+| :--- | :--- | :--- | :--- | :--- |
+| **Auth** | `POST` | `/auth/register` | Register a new developer | ❌ |
+| | `POST` | `/auth/login` | Authenticate user & issue tokens | ❌ |
+| | `POST` | `/auth/refresh` | Rotate refresh token | Cookie |
+| | `POST` | `/auth/logout` | Clear refresh token & session | ✅ |
+| | `GET` | `/auth/me` | Fetch authenticated user data | ✅ |
+| **Users** | `GET` | `/users/:username` | Fetch user profile by username | ❌ |
+| | `PUT` | `/users/profile` | Update profile information | ✅ |
+| | `POST` | `/users/avatar` | Upload and set user avatar | ✅ |
+| | `POST` | `/users/:id/follow` | Toggle follow / unfollow status | ✅ |
+| **Posts** | `GET` | `/posts` | Get paginated community posts | ❌ |
+| | `POST` | `/posts` | Publish a new markdown post | ✅ |
+| | `GET` | `/posts/feed` | Personalized feed of followed creators | ✅ |
+| | `GET` | `/posts/search` | Search posts with full-text queries | ❌ |
+| | `POST` | `/posts/:id/like` | Like or unlike a post | ✅ |
+| | `POST` | `/posts/:id/bookmark`| Save or remove post from bookmarks | ✅ |
+| **Comments**| `GET`| `/comments/post/:id` | Fetch comments for a post | ❌ |
+| | `POST` | `/comments/post/:id` | Add comment to a post | ✅ |
+| | `POST` | `/comments/:id/reply`| Reply to an existing comment | ✅ |
+| **Notifications** | `GET` | `/notifications` | Retrieve user notifications | ✅ |
+| | `PUT` | `/notifications/read-all` | Mark all notifications as read | ✅ |
 
-## Deployment
+---
 
-### Backend (Render / Railway)
+## 🧪 CI/CD & Testing
 
-1. Connect your GitHub repo
-2. Set all environment variables from `.env.example`
-3. Set `CLIENT_ORIGIN` to your Vercel frontend URL
-4. Build command: `npm install`
-5. Start command: `node server.js`
+This project incorporates automated CI through GitHub Actions (`.github/workflows/ci.yml`):
+- Runs ESLint validation across both backend and frontend workspaces.
+- Validates production frontend builds via Vite.
+- Ensures dependency integrity on pull requests and pushes to `main`.
 
-### Frontend (Vercel)
+---
 
-1. Connect your GitHub repo, root = `frontend/`
-2. Set `VITE_API_URL` = `https://your-backend.onrender.com/api/v1`
-3. Set `VITE_SOCKET_URL` = `https://your-backend.onrender.com`
+## 📄 License
 
-## License
+Distributed under the MIT License. See `LICENSE` for more information.
 
-MIT — see [LICENSE](LICENSE)
+---
+
+<p align="center">
+  Built with ❤️ for developers by <a href="https://github.com/preettt10"><strong>Preet</strong></a>
+</p>
